@@ -1,0 +1,34 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {evaluate,saturationKpa} = require('./core.js');
+function close(actual, expected, msg, tolerance = 1e-10) {
+  assert.ok(Math.abs(actual-expected) <= tolerance*Math.max(1,Math.abs(expected)), `${msg}: ${actual} ≠ ${expected}`);
+}
+const condition={temperatureC:25,outsideRH:100,insideRH:0,oxygenDpAtm:0.21};
+const layer=(thicknessUm=10,pOxygen=100,pWater=10)=>({name:'unit test',thicknessUm,pOxygen,pWater,source:'synthetic analytical fixture'});
+const m1=evaluate([layer()],condition);
+close(m1.oxygen.value,2.1,'single-layer oxygen');
+close(m1.vaporPressureKpa,3.1685,'Buck 25C',1e-3);
+close(m1.water.value,m1.vaporPressureKpa,'single-layer water');
+const m3=evaluate([layer(),layer(),layer()],condition);
+close(m3.oxygen.value,0.7,'three identical layers');
+close(m3.oxygen.shares.reduce((a,b)=>a+b,0),100,'shares sum');
+const a=[layer(10,100,20),layer(20,200,40),layer(40,700,60)];
+const b=[...a].reverse();
+const ra=evaluate(a,condition),rb=evaluate(b,condition);
+close(ra.oxygen.value,rb.oxygen.value,'permutation invariance O2');
+close(ra.water.value,rb.water.value,'permutation invariance H2O');
+const doubled=evaluate([layer(20,100,10)],condition);
+close(doubled.oxygen.value,m1.oxygen.value/2,'double thickness halves oxygen flux');
+close(doubled.water.value,m1.water.value/2,'double thickness halves water flux');
+const zero=evaluate([layer()],{...condition,outsideRH:50,insideRH:50,oxygenDpAtm:0});
+close(zero.oxygen.value,0,'zero O2 gradient');close(zero.water.value,0,'zero RH gradient');
+const reversed=evaluate([layer()],{...condition,outsideRH:0,insideRH:100});
+close(reversed.water.value,-m1.water.value,'WVTR direction');
+const partial=evaluate([layer(10,'',10)],condition);
+assert.equal(partial.oxygen.value,null,'incomplete oxygen inputs must block output');
+assert.notEqual(partial.water.value,null,'complete water inputs should still be shown');
+const invalid=evaluate([layer(0,100,10)],condition);
+assert.equal(invalid.oxygen.value,null,'zero thickness must block output');
+assert.ok(Number.isNaN(saturationKpa(55)),'out of temperature scope rejects');
+console.log('PASS — 16 analytical assertions');

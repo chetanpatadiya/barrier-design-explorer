@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Development-stage multilayer barrier resistance explorer for oxygen and water vapor transmission screening. User-supplied material data required."/>
+<title>Barrier Design Explorer · V0.1</title>
+<style>
+:root{--ink:#172d42;--muted:#597083;--border:#dce5eb;--surface:#fff;--background:#f4f7fa;--indigo:#3159b7;--teal:#087e89;--amber:#9a5b0a;--amberbg:#fff3d9;--bgdark:#102638}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--background);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.45}a{color:#2458b0}a:hover{text-decoration:none}.container{max-width:1250px;margin:auto;padding:0 22px}.hero{background:linear-gradient(120deg,#122c46 0%,#204467 75%,#106c78 130%);color:white;padding:40px 0 34px}.hero-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.kicker{color:#a8dcdd;letter-spacing:1.8px;font-size:11px;font-weight:800}.status{color:#f5d391;border:1px solid #947e4d;border-radius:999px;font-size:12px;padding:6px 12px}h1{font-size:clamp(30px,5vw,42px);margin:18px 0 10px;letter-spacing:-1.4px;font-weight:780}h2{font-size:19px;margin:0 0 16px;letter-spacing:-.4px}h3{font-size:15px;margin:0 0 12px}p{margin:8px 0}.hero p{color:#c7d9e6;max-width:800px;font-size:16px}.subline{font-size:12px;color:#b5c8d8;margin-top:18px}.stack{display:grid;gap:18px;padding-top:24px;padding-bottom:45px}.alert{background:var(--amberbg);border:1px solid #eed9a6;color:#714908;border-radius:12px;padding:14px 18px;font-size:14px}.alert strong{display:block;margin-bottom:3px}.hidden{display:none!important}.panel{background:white;border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:0 5px 22px rgba(29,51,73,.035)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}.panel-head h2{margin:0}.buttons{display:flex;gap:8px;flex-wrap:wrap}.button{appearance:none;background:#fff;color:#173956;border:1px solid #cbd8e1;border-radius:9px;cursor:pointer;font-weight:650;padding:9px 13px;font-size:13px}.button:hover{border-color:#547a9c;background:#f3f7fb}.button.primary{background:#204a89;color:#fff;border-color:#204a89}.button.primary:hover{background:#173b6f}.button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8bb4eb;outline-offset:2px}.condition-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}label{display:block;color:#355168;font-size:12px;font-weight:700}label small{display:block;font-weight:500;color:#7a8fa1;font-size:10px;margin:2px 0 4px}input,select{display:block;width:100%;border:1px solid #c9d7e1;background:#fff;border-radius:9px;padding:10px;margin-top:7px;font-size:14px;color:#19354b}input[type=range]{accent-color:#2457a4;padding:0}input:disabled{opacity:.5}label .help{color:#6e8291}hr{border:0;border-top:1px solid var(--border);margin:17px 0}.mini{font-size:12px;color:var(--muted)}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.metric{border:1px solid #d7e3e8;background:#f8fbfd;border-radius:12px;padding:18px}.metric.accent{border-color:#b9d9dc;background:#f3fafb}.metric span{display:block;color:#557083;font-size:12px;font-weight:720}.metric .value{font-size:clamp(25px,3.5vw,32px);font-weight:770;letter-spacing:-1px;line-height:1.35;margin-top:5px;overflow-wrap:anywhere}.metric small{display:block;color:#6e8492;font-size:11px}.details-row{display:flex;flex-wrap:wrap;gap:15px;margin:13px 0 0;font-size:12px;color:#536879}.details-row strong{color:#244f6b}.layer{padding:14px;border:1px solid #dce6ed;border-radius:12px;margin-bottom:10px;background:#fbfdfe}.layer-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}.tag{display:inline-flex;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.4px;color:#1b5876;background:#e4f0f6;padding:5px 8px}.layer-arrows{display:flex;gap:7px}.layer-arrows button{width:29px;height:29px;border:1px solid #d3e0e7;border-radius:7px;color:#436178;cursor:pointer;background:#fff;font-size:16px}.layer-arrows button:hover{background:#e6f1fa}.layer-fields{display:grid;grid-template-columns:minmax(160px,1.7fr) minmax(110px,0.8fr) minmax(155px,1.5fr) minmax(155px,1.5fr);gap:11px}.layer-fields .source-field{grid-column:span 4}.layer-fields input{margin-top:6px}.layer-fields label:nth-child(3) input,.layer-fields label:nth-child(4) input{margin-top:7px}.graph-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}.share{margin:10px 0 14px}.share-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#607488}.share-top strong{color:#243f55}.track{margin-top:6px;height:9px;border-radius:9px;background:#e5edf3;overflow:hidden}.track span{display:block;background:#2879b4;height:100%;border-radius:8px}.graph-grid>div:nth-child(2) .track span{background:#0e9394}.subtle{color:#75899a;font-size:12px;font-style:italic}.whatif{display:grid;grid-template-columns:2fr 2fr 1fr;align-items:end;gap:16px}.whatif-output{font-size:13px;line-height:1.75;padding:14px;background:#f5f9fc;border:1px solid #e1eaf0;border-radius:9px}.whatif-output strong{color:#1a5371}ul{margin:10px 0;padding-left:19px}li{margin:6px 0}.warning-list{font-size:13px;color:#655328}.source-box{display:grid;grid-template-columns:1fr 1fr;gap:20px}.formula{background:#f1f6fa;border:1px solid #dce5eb;border-radius:9px;padding:12px 15px;font-family:Georgia,serif;font-size:16px;margin:10px 0 12px;color:#263f52;overflow-wrap:anywhere}details summary{cursor:pointer;font-weight:750}.sources li{font-size:13px}.foot{font-size:12px;color:#72889a;text-align:center;margin:3px 0 5px}@media(max-width:850px){.condition-grid{grid-template-columns:repeat(2,1fr)}.layer-fields{grid-template-columns:repeat(2,1fr)}.layer-fields .source-field{grid-column:span 2}.graph-grid,.source-box{grid-template-columns:1fr}.whatif{grid-template-columns:1fr 1fr}.whatif-output{grid-column:span 2}}@media(max-width:560px){.container{padding:0 13px}.panel{padding:16px}.condition-grid{grid-template-columns:1fr 1fr}.results{grid-template-columns:1fr}.layer-fields{grid-template-columns:1fr 1fr}.layer-fields label:first-child,.layer-fields .source-field{grid-column:span 2}.whatif{grid-template-columns:1fr}.whatif-output{grid-column:auto}h1{line-height:1.1}.hero{padding:30px 0}.metric{padding:14px}}@media print{body{background:#fff}.hero{background:#fff;color:#172d42;padding:10px 0}.hero p,.hero .subline{color:#47596a}.buttons,.layer-arrows,button,input[type=range]{display:none!important}.panel{box-shadow:none;break-inside:avoid}.stack{padding:5px}.status{color:#885a17}input{border:0;padding:0;font-size:12px}.alert{color:#6e4d08}}
+</style></head><body>
+<header class="hero"><div class="container"><div class="hero-top"><span class="kicker">PACKAGING ENGINEERING • OPEN CALCULATION</span><span class="status">IN DEVELOPMENT · V0.1</span></div>
+<h1>Barrier Design Explorer</h1><p>Explore ideal steady-state oxygen and moisture transmission through multilayer packaging films. Use your own permeability values; compare layer thickness and relative barrier contributions.</p>
+<div class="subline" id="modeLabel">ILLUSTRATIVE DEMO • Synthetic coefficients</div></div></header>
+<main class="container stack">
+<div class="alert" role="note"><strong>Development-stage engineering screening tool — not validated for design release.</strong> Results use ideal planar layers with constant permeability. They do not model moisture-dependent EVOH behavior, temperature-dependent material coefficients, layer defects, thermoforming, package geometry, seal integrity, or sterile barrier performance. Independent test data are required for actual packaging decisions.</div>
+<div id="demoBanner" class="alert" role="status"><strong>DEMO DATA ARE SYNTHETIC.</strong> Preloaded coefficients are invented solely to demonstrate the mathematical relationships. They are <strong>not</strong> literature values, supplier specifications, or performance predictions. Select “Start with my data” before using material-specific inputs.</div>
+<section class="panel"><div class="panel-head"><h2>1. Environment & driving force</h2><span class="mini">Isothermal · common conditions for all layers</span></div>
+<div class="condition-grid">
+<label>Temperature · °C<input id="temp" type="number" value="23" min="0" max="50" step="any"></label>
+<label>Outside RH · %<input id="outside" type="number" value="75" min="0" max="100" step="any"></label>
+<label>Inside RH · %<input id="inside" type="number" value="25" min="0" max="100" step="any"></label>
+<label>O₂ partial-pressure difference · atm<input id="oxygenDp" type="number" value="0.21" min="0" max="1" step="any"></label>
+</div><p class="mini">Temperature is used only to convert RH to water-vapor partial pressure (Buck 1996 correlation). <strong>Polymer permeability coefficients remain constant</strong> when temperature or RH changes. Enter coefficients measured under appropriate conditions.</p></section>
+<section class="panel"><div class="panel-head"><h2>2. Layer architecture <span class="mini">(<span id="layerCount">3</span> layers)</span></h2><div class="buttons"><button class="button" id="loadDemo" type="button">Load synthetic demo</button><button class="button" id="blank" type="button">Start with my data</button><button class="button primary" id="addLayer" type="button">+ Add layer</button></div></div>
+<p class="mini">Supply pressure-normalized permeability coefficients, <strong>not an OTR/WVTR measured for a complete film</strong>. Do not enter zero for an ideal foil or impermeable coating; this model does not support defect-controlled barriers. Every layer's permeability is required for its corresponding transmission calculation.</p><div id="layerList"></div></section>
+<section class="panel"><div class="panel-head"><h2>3. Predicted transmission (screening)</h2><span class="mini">Steady-state | ideal film</span></div>
+<div class="results"><div class="metric accent"><span>Oxygen transmission · OTR</span><div class="value" id="otr">—</div><small id="otrUnit">cm³(STP) / m²·day</small></div><div class="metric accent"><span>Water vapor transmission · WVTR</span><div class="value" id="wvtr">—</div><small id="wvtrUnit">g / m²·day (magnitude)</small></div><div class="metric"><span>Total film thickness</span><div class="value" id="thickness">—</div><small>µm</small></div></div>
+<div class="details-row"><div>Water-vapor Δp (outside − inside): <strong id="waterDp">—</strong></div><div>Direction: <strong id="direction">—</strong></div></div>
+<hr/><div class="graph-grid"><div><h3>Oxygen resistance distribution</h3><p class="mini">Higher % = stronger contribution to limiting oxygen transport</p><div id="oxygenBars"></div></div><div><h3>Water-vapor resistance distribution</h3><p class="mini">Higher % = stronger contribution to limiting moisture transport</p><div id="waterBars"></div></div></div></section>
+<section class="panel"><div class="panel-head"><h2>4. Thickness what-if</h2><span class="mini">No change to base design</span></div><div class="whatif"><label>Select layer<select id="whatIfLayer"></select></label><label>Thickness multiplier <strong id="scaleLabel">1×</strong><input id="scale" type="range" min="50" max="200" step="5" value="100" /></label><div class="whatif-output" id="whatIfResults">Choose a layer.</div></div><p class="mini">Only layer thickness changes. Polymer properties, test conditions and other layers are held constant. This analysis does not predict barrier changes caused by altered film processing or morphology.</p></section>
+<section class="panel"><div class="panel-head"><h2>5. Quality warnings and output</h2><div class="buttons"><button class="button" id="exportJSON" type="button">Export calculation JSON</button><button class="button" id="exportCSV" type="button">Export layer CSV</button><button class="button" id="print" type="button">Print report</button></div></div><ul id="warningList" class="warning-list"></ul><p class="mini">Exports include source descriptions and user-supplied inputs. JSON includes conditions, computed values and warning messages. No data are sent to a server.</p></section>
+<section class="panel"><h2>Method, equations & source notes</h2><div class="source-box"><div><h3>Model implemented in V0.1</h3><div class="formula">R<sub>k,total</sub> = Σ [ L<sub>i</sub> / P<sub>k,i</sub> ]</div><div class="formula">J<sub>k</sub> = Δp<sub>k</sub> / R<sub>k,total</sub></div><p class="mini">For oxygen, Δp is entered in atmospheres. For water vapor, Δp = p<sub>sat</sub>(T)·(RH<sub>outside</sub> − RH<sub>inside</sub>)/100 in kPa. Reported WVTR is the magnitude; direction is reported separately. Resistance share = R<sub>i</sub>/ΣR<sub>i</sub>.</p><h3 style="margin-top:16px">Boundary of applicability</h3><p class="mini">Ideal, homogeneous, defect-free planar layers; one steady-state flux; no interface resistance, no humidity-dependent P, no transient water sorption or oxygen–water coupling. Layer order does not affect this model's result.</p></div><div><h3>Public supporting references</h3><ol class="sources"><li><a href="https://doi.org/10.1295/polymj.36.386" target="_blank" rel="noopener noreferrer">Huang, Wu & Huang (2004)</a> — model comparison with PA6/LDPE multilayer experiments.</li><li><a href="https://doi.org/10.1177/8756087913477857" target="_blank" rel="noopener noreferrer">Morris (2013)</a> — multilayer packaging resistance model in a package-design context.</li><li><a href="https://www.eol.ucar.edu/data-software/conventions-and-standards/water-vapor-pressure-formulations" target="_blank" rel="noopener noreferrer">UCAR / Buck (1996)</a> — saturation vapor pressure from temperature.</li><li><a href="https://doi.org/10.1002/pts.851" target="_blank" rel="noopener noreferrer">Jakobsen & Risbo (2009) erratum</a> — logged, <strong>not implemented</strong>.</li><li><a href="https://doi.org/10.57745/VJEJ1W" target="_blank" rel="noopener noreferrer">Vercasson et al. (2025) dataset</a> — for future independent validation audit, <strong>not a property preset</strong>.</li></ol><p class="mini">Data provenance is the responsibility of whoever enters the coefficients. A citation to a mathematical model does not validate a particular material-grade prediction.</p></div></div></section>
+<p class="foot">Barrier Design Explorer v0.1 • Demonstration and screening only • Independent measurement and engineering verification required before use in regulated design decisions.</p>
+</main>
+<script>/* BARRIER_CORE_START */
+/*
+ * Barrier Design Explorer v0.1 — independent resistance-in-series implementation.
+ * Pressure-normalized units:
+ * O2 P: cm^3(STP) * um / (m^2 * day * atm)
+ * WV P: g * um / (m^2 * day * kPa)
+ * thickness: um
+ * Outputs: cm^3(STP)/(m^2*day), g/(m^2*day)
+ * NO corrections for humidity-dependent polymer permeability or temperature-dependent P.
+ */
+(function(root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.BarrierCore = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  'use strict';
+  const isPositive = (v) => typeof v === 'number' && Number.isFinite(v) && v > 0;
+  const num = v => (v === '' || v === null || v === undefined ? NaN : Number(v));
+  // Buck (1996) saturation pressure above liquid water, kPa, 0 to 50 deg C only.
+  function saturationKpa(tC) {
+    const t = num(tC);
+    if (!Number.isFinite(t) || t < 0 || t > 50) return NaN;
+    return 0.61121 * Math.exp((18.678 - t / 234.5) * t / (257.14 + t));
+  }
+  function evaluate(layers, conditions) {
+    const t = num(conditions.temperatureC), outRH = num(conditions.outsideRH), inRH = num(conditions.insideRH);
+    const oxygenDpAtm = num(conditions.oxygenDpAtm);
+    const warnings = [];
+    const validLayers = Array.isArray(layers) && layers.length > 0;
+    const thicknessValid = validLayers && layers.every(l => isPositive(num(l.thicknessUm)));
+    const totalThicknessUm = thicknessValid ? layers.reduce((s,l)=>s+num(l.thicknessUm),0) : null;
+    const waterConditionsValid = Number.isFinite(t) && t>=0 && t<=50 && Number.isFinite(outRH) && outRH>=0 && outRH<=100 && Number.isFinite(inRH) && inRH>=0 && inRH<=100;
+    const oxygenConditionsValid = Number.isFinite(oxygenDpAtm) && oxygenDpAtm>=0 && oxygenDpAtm<=1;
+    if (!validLayers) warnings.push('Add at least one layer.');
+    if (!thicknessValid) warnings.push('Every layer requires a thickness greater than zero.');
+    if (!oxygenConditionsValid) warnings.push('Oxygen partial-pressure difference must be 0–1 atm.');
+    if (!waterConditionsValid) warnings.push('Enter temperature 0–50 °C and RH values 0–100%.');
+    function calculateSpecies(key, boundaryValid, dp, label) {
+      if (!validLayers || !thicknessValid || !boundaryValid) return {value:null, missing:[], resistances:[], totalResistance:null};
+      const missing = layers.map((l,i) => isPositive(num(l[key])) ? null : i+1).filter(v => v!==null);
+      if (missing.length) {
+        warnings.push(`${label}: enter positive, condition-appropriate permeability for layer${missing.length > 1 ? 's' : ''} ${missing.join(', ')}.`);
+        return {value:null, missing, resistances:[], totalResistance:null};
+      }
+      const resistances = layers.map(l => num(l.thicknessUm)/num(l[key]));
+      const totalResistance = resistances.reduce((s,r)=>s+r,0);
+      const value = dp/totalResistance;
+      return {value,missing:[],resistances,totalResistance,shares:resistances.map(r=>100*r/totalResistance)};
+    }
+    const oxygen = calculateSpecies('pOxygen', oxygenConditionsValid, oxygenDpAtm, 'OTR');
+    const vaporPressureKpa = waterConditionsValid ? saturationKpa(t) : null;
+    const outsidePartialKpa = waterConditionsValid ? vaporPressureKpa * outRH / 100 : null;
+    const insidePartialKpa = waterConditionsValid ? vaporPressureKpa * inRH / 100 : null;
+    const deltaWaterKpa = waterConditionsValid ? outsidePartialKpa - insidePartialKpa : null;
+    const water = calculateSpecies('pWater', waterConditionsValid, deltaWaterKpa, 'WVTR');
+    const noSource = validLayers && layers.some(l => !String(l.source||'').trim());
+    if (noSource) warnings.push('One or more input permeability values have no provenance reference.');
+    warnings.push('Constant-permeability, steady-state, planar and isothermal ideal-layer model only. No RH/temperature adjustment to polymer P.');
+    return {oxygen,water,totalThicknessUm,vaporPressureKpa,outsidePartialKpa,insidePartialKpa,deltaWaterKpa,warnings};
+  }
+  return {evaluate,saturationKpa};
+});
+
+/* BARRIER_CORE_END */</script>
+<script>/* APP_START */
+(function(){
+ 'use strict';
+ const core=window.BarrierCore;let count=0;let demo=true;
+ const synthetic = [
+   {name:'PE (illustrative)',thicknessUm:35,pOxygen:100000,pWater:400,source:'SYNTHETIC EXAMPLE — not measured'},
+   {name:'EVOH (illustrative)',thicknessUm:10,pOxygen:100,pWater:1500,source:'SYNTHETIC EXAMPLE — not measured'},
+   {name:'PE (illustrative)',thicknessUm:35,pOxygen:100000,pWater:400,source:'SYNTHETIC EXAMPLE — not measured'}
+ ];
+ let layers=synthetic.map(o=>({...o,id:++count}));
+ const $=id=>document.getElementById(id);
+ const fmt=(v,d=3)=> !Number.isFinite(v)?'—':(Math.abs(v)>0 && (Math.abs(v)<0.001 || Math.abs(v)>=1e6)?v.toExponential(3):Number(v.toPrecision(d+2)).toLocaleString('en-US',{maximumFractionDigits:Math.max(0,d)}));
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function getConditions(){return {temperatureC:$('temp').value,outsideRH:$('outside').value,insideRH:$('inside').value,oxygenDpAtm:$('oxygenDp').value};}
+ function clearDemo(){demo=false;$('demoBanner').classList.add('hidden');$('modeLabel').textContent='USER-DATA MODE • Verify each material coefficient';}
+ function loadDemo(){demo=true; layers=synthetic.map(o=>({...o,id:++count}));$('demoBanner').classList.remove('hidden');$('modeLabel').textContent='ILLUSTRATIVE DEMO • Synthetic coefficients';renderRows();update();}
+ function blankStart(){clearDemo();layers=[{id:++count,name:'Layer 1',thicknessUm:25,pOxygen:'',pWater:'',source:''},{id:++count,name:'Layer 2',thicknessUm:25,pOxygen:'',pWater:'',source:''}];renderRows();update();}
+ function fields(l){return `<div class="layer-heading"><span class="tag">L${layers.indexOf(l)+1}</span><div class="layer-arrows"><button type="button" data-action="up" data-id="${l.id}" title="Move layer up" aria-label="Move layer up">↑</button><button type="button" data-action="down" data-id="${l.id}" title="Move layer down" aria-label="Move layer down">↓</button><button type="button" data-action="remove" data-id="${l.id}" title="Remove layer" aria-label="Remove layer">×</button></div></div>
+ <div class="layer-fields">
+ <label>Material / description<input type="text" data-id="${l.id}" data-field="name" value="${esc(l.name)}" placeholder="e.g., PE grade A" maxlength="100"/></label>
+ <label>Thickness · µm<input type="number" min="0.001" max="100000" step="any" data-id="${l.id}" data-field="thicknessUm" value="${esc(l.thicknessUm)}"/></label>
+ <label>O₂ permeability <span class="help" title="cm³(STP) × µm / (m² × day × atm)">ⓘ</span><small>cm³·µm / (m²·day·atm)</small><input type="number" min="0" step="any" data-id="${l.id}" data-field="pOxygen" value="${esc(l.pOxygen)}" placeholder="Required for OTR"/></label>
+ <label>H₂O permeability <span class="help" title="g × µm / (m² × day × kPa)">ⓘ</span><small>g·µm / (m²·day·kPa)</small><input type="number" min="0" step="any" data-id="${l.id}" data-field="pWater" value="${esc(l.pWater)}" placeholder="Required for WVTR"/></label>
+ <label class="source-field">Data source / grade / test conditions <input type="text" data-id="${l.id}" data-field="source" value="${esc(l.source)}" placeholder="DOI, data sheet, or test report" maxlength="350"/></label>
+ </div>`;}
+ function renderRows(){ $('layerList').innerHTML=layers.map(l=>`<section class="layer" data-layer="${l.id}">${fields(l)}</section>`).join('');$('layerCount').textContent=String(layers.length);renderSelect();}
+ function renderSelect(){const sel=$('whatIfLayer');const old=sel.value;sel.innerHTML=layers.map(l=>`<option value="${l.id}">${esc(l.name || 'Unnamed')} · L${layers.indexOf(l)+1}</option>`).join('');if(layers.some(l=>String(l.id)===old))sel.value=old;}
+ function valRow(label, value, unit, id){ $(id).textContent=value===null?'Enter data':fmt(value);$(id+'Unit').textContent=value===null?'Incomplete inputs':unit;}
+ function bars(containerId,shares){const e=$(containerId);if(!shares?.length){e.innerHTML='<p class="subtle">All layer permeability inputs are required for this calculation.</p>';return;}e.innerHTML=shares.map((pct,i)=>`<div class="share"><div class="share-top"><span>Layer ${i+1} · ${esc(layers[i].name)}</span><strong>${fmt(pct,1)}%</strong></div><div class="track"><span style="width:${Math.max(0,Math.min(100,pct))}%"></span></div></div>`).join('');}
+ function update(){const r=core.evaluate(layers,getConditions());
+   valRow('OTR',r.oxygen.value,'cm³(STP) / m²·day','otr');valRow('WVTR',r.water.value===null?null:Math.abs(r.water.value),'g / m²·day (magnitude)','wvtr');
+   $('thickness').textContent=r.totalThicknessUm===null?'—':fmt(r.totalThicknessUm,2);$('waterDp').textContent=r.deltaWaterKpa===null?'—':fmt(r.deltaWaterKpa,4)+' kPa';
+   $('direction').textContent=r.deltaWaterKpa===null?'—':r.deltaWaterKpa>0?'Outside → inside':r.deltaWaterKpa<0?'Inside → outside':'Zero vapor-pressure gradient';
+   bars('oxygenBars',r.oxygen.shares);bars('waterBars',r.water.shares);
+   $('warningList').innerHTML=r.warnings.map(w=>`<li>${esc(w)}</li>`).join('');
+   const idx=layers.findIndex(l=>String(l.id)===$('whatIfLayer').value);const factor=Number($('scale').value)/100;$('scaleLabel').textContent=fmt(factor,2)+'×';
+   if(idx<0||!Number.isFinite(factor)){ $('whatIfResults').textContent='Choose a layer.';return;}
+   const variant=layers.map((l,i)=>i===idx?{...l,thicknessUm:Number(l.thicknessUm)*factor}:{...l});
+   const vr=core.evaluate(variant,getConditions());
+   function diff(base,newval){return base===null||newval===null||base===0?'—':`${(100*(newval/base-1))>=0?'+':''}${fmt(100*(newval/base-1),1)}%`;}
+   $('whatIfResults').innerHTML=`<div>Scenario thickness: <strong>${fmt(vr.totalThicknessUm,2)} µm</strong></div><div>OTR change: <strong>${diff(r.oxygen.value,vr.oxygen.value)}</strong></div><div>WVTR change: <strong>${diff(r.water.value,vr.water.value)}</strong></div>`;
+   return r;
+ }
+ function save(filename,body,type){const blob=new Blob([body],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+ $('layerList').addEventListener('input',e=>{const id=Number(e.target.dataset.id),field=e.target.dataset.field;if(!id||!field)return;const l=layers.find(x=>x.id===id);if(!l)return;l[field]=e.target.value;if(field==='name')renderSelect();update();});
+ $('layerList').addEventListener('click',e=>{const btn=e.target.closest('button[data-action]');if(!btn)return;const id=Number(btn.dataset.id),i=layers.findIndex(x=>x.id===id);if(i<0)return;const action=btn.dataset.action;
+  if(action==='remove'){if(layers.length===1){alert('Keep at least one layer.');return;}layers.splice(i,1);}
+  if(action==='up'&&i>0)[layers[i-1],layers[i]]=[layers[i],layers[i-1]];
+  if(action==='down'&&i<layers.length-1)[layers[i+1],layers[i]]=[layers[i],layers[i+1]];
+  renderRows();update();});
+ ['temp','outside','inside','oxygenDp','scale','whatIfLayer'].forEach(id=>$(id).addEventListener('input',update));
+ $('addLayer').addEventListener('click',()=>{layers.push({id:++count,name:'New layer',thicknessUm:10,pOxygen:'',pWater:'',source:''});renderRows();update();});
+ $('loadDemo').addEventListener('click',loadDemo);$('blank').addEventListener('click',blankStart);
+ $('exportJSON').addEventListener('click',()=>save('barrier-design-v0.1.json',JSON.stringify({tool:'Barrier Design Explorer',version:'0.1',status:'IN DEVELOPMENT',syntheticExample:demo,units:{thickness:'µm',oxygenPermeability:'cm3(STP)*µm/(m2*day*atm)',waterPermeability:'g*µm/(m2*day*kPa)'},conditions:getConditions(),layers,results:core.evaluate(layers,getConditions())},null,2),'application/json'));
+ $('exportCSV').addEventListener('click',()=>{const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const rows=[['layer','material','thickness_um','pO2_cm3_um_per_m2_day_atm','pH2O_g_um_per_m2_day_kPa','source'],...layers.map((l,i)=>[i+1,l.name,l.thicknessUm,l.pOxygen,l.pWater,l.source])];save('barrier-layers-v0.1.csv',rows.map(r=>r.map(q).join(',')).join('\r\n'),'text/csv;charset=utf-8');});
+ $('print').addEventListener('click',()=>window.print());
+ renderRows();update();
+})();
+
+/* APP_END */</script>
+</body></html>
